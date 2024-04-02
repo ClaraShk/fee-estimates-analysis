@@ -28,7 +28,7 @@ def read_json_file(file_path):
         print(f"Failed to load estimates data from {file_path}: {e}")
         return []
 
-def plot_data(block_heights, mempool_estimates, blockpolicy_estimates, low_percentile, high_percentile, logscale_yaxis):
+def plot_data(block_heights, mempool_estimates, blockpolicy_estimates, low_percentile, mid_precentile, high_percentile, logscale_yaxis):
     """
     Plots mempool data.
 
@@ -42,7 +42,8 @@ def plot_data(block_heights, mempool_estimates, blockpolicy_estimates, low_perce
     plt.style.use('ggplot')
     fig, ax = plt.subplots(figsize=(15, 15))
 
-    ax.fill_between(block_heights, low_percentile, high_percentile, alpha=.5, linewidth=0, color='grey')
+    ax.fill_between(block_heights, low_percentile, mid_precentile, alpha=.5, linewidth=0, color='grey')
+    ax.fill_between(block_heights, mid_precentile, high_percentile, alpha=.5, linewidth=0, color='lightgrey')
     ax.plot(block_heights, blockpolicy_estimates, linewidth=2, color='yellow', label='Block Policy Estimates')
     ax.plot(block_heights, mempool_estimates, linewidth=2, color='blue', label='Mempool Estimates')
 
